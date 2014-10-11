@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A4A2B8119E88AD400B74EB1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4A2B8019E88AD400B74EB1 /* Security.framework */; };
+		3A4A2B8419E88BB700B74EB1 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A2B8319E88BB700B74EB1 /* KeychainItemWrapper.m */; };
+		3A4A2B8719E8A2F000B74EB1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A2B8619E8A2F000B74EB1 /* LoginViewController.m */; };
+		3A4A2B8C19E8BDCE00B74EB1 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A2B8B19E8BDCE00B74EB1 /* UserModel.m */; };
+		3AA7EB4D19E884C3002487C6 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA7EB4C19E884C3002487C6 /* DashboardViewController.m */; };
+		3AB15CC719D9F8B60052DD5D /* PushNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB15CC619D9F8B60052DD5D /* PushNotifications.framework */; };
 		3AD543DD19D9E56400D92D0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD543DC19D9E56400D92D0A /* main.m */; };
 		3AD543E019D9E56400D92D0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD543DF19D9E56400D92D0A /* AppDelegate.m */; };
 		3AD543E319D9E56400D92D0A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD543E219D9E56400D92D0A /* ViewController.m */; };
 		3AD543E619D9E56400D92D0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AD543E419D9E56400D92D0A /* Main.storyboard */; };
 		3AD543E819D9E56400D92D0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD543E719D9E56400D92D0A /* Images.xcassets */; };
-		3AD543EB19D9E56400D92D0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AD543E919D9E56400D92D0A /* LaunchScreen.xib */; };
 		3AD543F719D9E56400D92D0A /* IntuitWearTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD543F619D9E56400D92D0A /* IntuitWearTests.m */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +32,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A4A2B8019E88AD400B74EB1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3A4A2B8219E88BB700B74EB1 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		3A4A2B8319E88BB700B74EB1 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		3A4A2B8519E8A2F000B74EB1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		3A4A2B8619E8A2F000B74EB1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		3A4A2B8A19E8BDCE00B74EB1 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		3A4A2B8B19E8BDCE00B74EB1 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		3AA7EB4B19E884C3002487C6 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		3AA7EB4C19E884C3002487C6 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		3AB15CC619D9F8B60052DD5D /* PushNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PushNotifications.framework; sourceTree = "<group>"; };
 		3AD543D719D9E56400D92D0A /* IntuitWear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntuitWear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD543DB19D9E56400D92D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AD543DC19D9E56400D92D0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -36,7 +51,6 @@
 		3AD543E219D9E56400D92D0A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3AD543E519D9E56400D92D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3AD543E719D9E56400D92D0A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3AD543EA19D9E56400D92D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3AD543F019D9E56400D92D0A /* IntuitWearTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntuitWearTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD543F519D9E56400D92D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AD543F619D9E56400D92D0A /* IntuitWearTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntuitWearTests.m; sourceTree = "<group>"; };
@@ -47,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A4A2B8119E88AD400B74EB1 /* Security.framework in Frameworks */,
+				3AB15CC719D9F8B60052DD5D /* PushNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,9 +76,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3AB3271619D9F3AF00EA3BF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A4A2B8019E88AD400B74EB1 /* Security.framework */,
+				3AB15CC619D9F8B60052DD5D /* PushNotifications.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3AD543CE19D9E56400D92D0A = {
 			isa = PBXGroup;
 			children = (
+				3AB3271619D9F3AF00EA3BF5 /* Frameworks */,
 				3AD543D919D9E56400D92D0A /* IntuitWear */,
 				3AD543F319D9E56400D92D0A /* IntuitWearTests */,
 				3AD543D819D9E56400D92D0A /* Products */,
@@ -86,8 +112,15 @@
 				3AD543E119D9E56400D92D0A /* ViewController.h */,
 				3AD543E219D9E56400D92D0A /* ViewController.m */,
 				3AD543E419D9E56400D92D0A /* Main.storyboard */,
+				3A4A2B8519E8A2F000B74EB1 /* LoginViewController.h */,
+				3A4A2B8619E8A2F000B74EB1 /* LoginViewController.m */,
+				3AA7EB4B19E884C3002487C6 /* DashboardViewController.h */,
+				3AA7EB4C19E884C3002487C6 /* DashboardViewController.m */,
+				3A4A2B8219E88BB700B74EB1 /* KeychainItemWrapper.h */,
+				3A4A2B8319E88BB700B74EB1 /* KeychainItemWrapper.m */,
+				3A4A2B8A19E8BDCE00B74EB1 /* UserModel.h */,
+				3A4A2B8B19E8BDCE00B74EB1 /* UserModel.m */,
 				3AD543E719D9E56400D92D0A /* Images.xcassets */,
-				3AD543E919D9E56400D92D0A /* LaunchScreen.xib */,
 				3AD543DA19D9E56400D92D0A /* Supporting Files */,
 			);
 			path = IntuitWear;
@@ -168,6 +201,7 @@
 				TargetAttributes = {
 					3AD543D619D9E56400D92D0A = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = G4SSPX3CBL;
 					};
 					3AD543EF19D9E56400D92D0A = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -200,7 +234,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AD543E619D9E56400D92D0A /* Main.storyboard in Resources */,
-				3AD543EB19D9E56400D92D0A /* LaunchScreen.xib in Resources */,
 				3AD543E819D9E56400D92D0A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,7 +254,11 @@
 			files = (
 				3AD543E319D9E56400D92D0A /* ViewController.m in Sources */,
 				3AD543E019D9E56400D92D0A /* AppDelegate.m in Sources */,
+				3A4A2B8C19E8BDCE00B74EB1 /* UserModel.m in Sources */,
+				3A4A2B8719E8A2F000B74EB1 /* LoginViewController.m in Sources */,
 				3AD543DD19D9E56400D92D0A /* main.m in Sources */,
+				3A4A2B8419E88BB700B74EB1 /* KeychainItemWrapper.m in Sources */,
+				3AA7EB4D19E884C3002487C6 /* DashboardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,14 +287,6 @@
 				3AD543E519D9E56400D92D0A /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3AD543E919D9E56400D92D0A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3AD543EA19D9E56400D92D0A /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -345,9 +374,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/hmaidasani/Downloads/PushNotificationSDK-1.2.0.3",
+				);
 				INFOPLIST_FILE = IntuitWear/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "959710c8-48aa-46ab-a7d4-7d1ddb591a23";
 			};
 			name = Debug;
 		};
@@ -355,9 +392,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/hmaidasani/Downloads/PushNotificationSDK-1.2.0.3",
+				);
 				INFOPLIST_FILE = IntuitWear/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "959710c8-48aa-46ab-a7d4-7d1ddb591a23";
 			};
 			name = Release;
 		};
@@ -368,6 +413,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -387,6 +433,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = IntuitWearTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -414,6 +461,7 @@
 				3AD543FC19D9E56400D92D0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AD543FD19D9E56400D92D0A /* Build configuration list for PBXNativeTarget "IntuitWearTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +470,7 @@
 				3AD543FF19D9E56400D92D0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
