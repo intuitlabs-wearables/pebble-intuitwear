@@ -23,7 +23,7 @@ UIViewController* root;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    
     root = self.window.rootViewController;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
     {
