@@ -13,5 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 - (void) loginChecks;
+- (void) loginUser: NSString;
+- (void) logout;
 @end
 

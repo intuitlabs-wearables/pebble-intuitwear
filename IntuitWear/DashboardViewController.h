@@ -10,4 +10,5 @@
 
 @interface DashboardViewController : UIViewController
 
+- (IBAction)logoutPressed:(id)sender;
 @end

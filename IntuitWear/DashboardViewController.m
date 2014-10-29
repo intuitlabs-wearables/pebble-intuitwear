@@ -8,6 +8,7 @@
 
 #import "DashboardViewController.h"
 #import "KeychainItemWrapper.h"
+#import "AppDelegate.h"
 
 @interface DashboardViewController ()
 
@@ -25,14 +26,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Make sure your segue name in storyboard is the same as this line
-    if ([[segue identifier] isEqualToString:@"logoutSegue"]) {
-        KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"IntuitWearLogin" accessGroup:nil];
-        [keychainItem resetKeychainItem];
-    }
-}
 
 /*
 #pragma mark - Navigation
@@ -44,4 +37,8 @@
 }
 */
 
+- (IBAction)logoutPressed:(id)sender {    
+//    [self.navigationController popViewControllerAnimated:YES];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] logout];
+}
 @end

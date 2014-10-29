@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <PushNotifications/PushNotificationSDK.h>
 #import "KeychainItemWrapper.h"
+#import "LoginViewController.h"
+#import "DashboardViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +18,13 @@
 
 @implementation AppDelegate
 
+NSData* globaldeviceToken;
+UIViewController* root;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    root = self.window.rootViewController;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
     {
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
@@ -28,7 +35,10 @@
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
          (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
     }
-
+    
+    [[PushNotificationSDK sharedPushManager] setSenderId:@"1f6f955a-153b-4a11-9afa-4068f7eca0f0"];
+//    [[PushNotificationSDK sharedPushManager]                    setSenderId:@"2c3f6770-d201-4be9-ba16-5b152222b900"];
+    [[PushNotificationSDK sharedPushManager] setDryRun:YES];
     
     [self loginChecks];
     
@@ -43,42 +53,44 @@
     NSLog(@"username: %@", username);
     
     if([username length] > 0) {
+        self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
-    } else {
-        //login alert
-        UIAlertView *alert =[[UIAlertView alloc ] initWithTitle:@"Log In" message:@"Enter your username" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [alert addButtonWithTitle:@"Log In"];
-        [alert show];
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {  //Login
-        UITextField *username = [alertView textFieldAtIndex:0];
-        NSLog(@"username: %@", username.text);
+- (void) loginUser:(NSString*) username {
         KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"IntuitWearLogin" accessGroup:nil];
-        [keychainItem setObject:username.text forKey:(__bridge id)(kSecAttrAccount)];
-        [self.window.rootViewController performSegueWithIdentifier:@"loginSegue" sender:self];
-        [[PushNotificationSDK sharedPushManager] setSenderId:@"1f6f955a-153b-4a11-9afa-4068f7eca0f0"];
-        [[PushNotificationSDK sharedPushManager] setDryRun:YES];
-    }
+        [keychainItem setObject:username forKey:(__bridge id)(kSecAttrAccount)];
+    self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
+    [[PushNotificationSDK sharedPushManager] registerUser:username
+                                                     inGroups:[NSArray arrayWithObjects:@"iosusergroup",@"hello",nil]
+                                              withDeviceToken:globaldeviceToken error:nil];
+    
+    
+}
+
+- (void) logout {
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"IntuitWearLogin" accessGroup:nil];
+    [keychainItem resetKeychainItem];
+    
+    self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
 }
 
 -(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
+    globaldeviceToken = deviceToken;
     KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"IntuitWearLogin" accessGroup:nil];
     NSString *username = [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)];
-    [[PushNotificationSDK sharedPushManager] registerUser:username
+    if([username length] > 0) {
+        [[PushNotificationSDK sharedPushManager] registerUser:username
                                                 inGroups:[NSArray arrayWithObjects:@"iosusergroup",@"hello",nil]
                                          withDeviceToken:deviceToken error:nil];
+    }
 }
 
 -    (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo{
-    
     NSDictionary*pushObject=[userInfo valueForKey:@"aps"];
-    UIAlertView*alert=[[UIAlertView alloc] initWithTitle:@"Push Message"
+    UIAlertView*alert=[[UIAlertView alloc] initWithTitle:@"Notification"
                                                 message:[pushObject objectForKey:@"alert"]
                                                delegate:nil
                                       cancelButtonTitle:@"OK"
