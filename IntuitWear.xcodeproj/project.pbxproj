@@ -10,7 +10,6 @@
 		3A4A2B8119E88AD400B74EB1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4A2B8019E88AD400B74EB1 /* Security.framework */; };
 		3A4A2B8419E88BB700B74EB1 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A2B8319E88BB700B74EB1 /* KeychainItemWrapper.m */; };
 		3A4A2B8719E8A2F000B74EB1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A2B8619E8A2F000B74EB1 /* LoginViewController.m */; };
-		3A4A2B8C19E8BDCE00B74EB1 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A2B8B19E8BDCE00B74EB1 /* UserModel.m */; };
 		3AA7EB4D19E884C3002487C6 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA7EB4C19E884C3002487C6 /* DashboardViewController.m */; };
 		3AB15CC719D9F8B60052DD5D /* PushNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB15CC619D9F8B60052DD5D /* PushNotifications.framework */; };
 		3AD543DD19D9E56400D92D0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD543DC19D9E56400D92D0A /* main.m */; };
@@ -36,8 +35,6 @@
 		3A4A2B8319E88BB700B74EB1 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		3A4A2B8519E8A2F000B74EB1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		3A4A2B8619E8A2F000B74EB1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		3A4A2B8A19E8BDCE00B74EB1 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
-		3A4A2B8B19E8BDCE00B74EB1 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		3AA7EB4B19E884C3002487C6 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
 		3AA7EB4C19E884C3002487C6 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
 		3AB15CC619D9F8B60052DD5D /* PushNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PushNotifications.framework; sourceTree = "<group>"; };
@@ -113,8 +110,6 @@
 				3AA7EB4C19E884C3002487C6 /* DashboardViewController.m */,
 				3A4A2B8219E88BB700B74EB1 /* KeychainItemWrapper.h */,
 				3A4A2B8319E88BB700B74EB1 /* KeychainItemWrapper.m */,
-				3A4A2B8A19E8BDCE00B74EB1 /* UserModel.h */,
-				3A4A2B8B19E8BDCE00B74EB1 /* UserModel.m */,
 				3AD543E719D9E56400D92D0A /* Images.xcassets */,
 				3AD543DA19D9E56400D92D0A /* Supporting Files */,
 			);
@@ -248,7 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AD543E019D9E56400D92D0A /* AppDelegate.m in Sources */,
-				3A4A2B8C19E8BDCE00B74EB1 /* UserModel.m in Sources */,
 				3A4A2B8719E8A2F000B74EB1 /* LoginViewController.m in Sources */,
 				3AD543DD19D9E56400D92D0A /* main.m in Sources */,
 				3A4A2B8419E88BB700B74EB1 /* KeychainItemWrapper.m in Sources */,
