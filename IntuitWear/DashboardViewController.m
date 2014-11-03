@@ -37,8 +37,9 @@
 }
 */
 
-- (IBAction)logoutPressed:(id)sender {    
-//    [self.navigationController popViewControllerAnimated:YES];
+/* Logout button click callback */
+- (IBAction)logoutPressed:(id)sender {
+    // call logout method in AppDelegate
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] logout];
 }
 @end

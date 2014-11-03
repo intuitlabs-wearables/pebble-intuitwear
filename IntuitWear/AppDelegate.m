@@ -23,8 +23,9 @@ UIViewController* root;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     root = self.window.rootViewController;
+    
+    // request for push notification permission first time
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
     {
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
@@ -36,39 +37,46 @@ UIViewController* root;
          (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
     }
     
+    // register this application with Intuit's Push Notification Gateway application with associated sender id
     [[PushNotificationSDK sharedPushManager] setSenderId:@"1f6f955a-153b-4a11-9afa-4068f7eca0f0"];
-//    [[PushNotificationSDK sharedPushManager]                    setSenderId:@"2c3f6770-d201-4be9-ba16-5b152222b900"];
     [[PushNotificationSDK sharedPushManager] setDryRun:YES];
     
+
     [self loginChecks];
     
-
     return YES;
 }
 
+/*
+ Method that checks if user is already logged in within by checking the keychain at launch. If already logged in, skip login view and go to Dashboard view.
+ */
 - (void) loginChecks {
-    // Get the stored data before the view loads
     KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"IntuitWearLogin" accessGroup:nil];
     NSString *username = [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)];
     NSLog(@"username: %@", username);
     
     if([username length] > 0) {
-        self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
     }
 }
 
+/*
+ Method that logs in user by saving username to keychain and changing the view to the dashboard view. Also, registers username with Intuit's Push Notification Gateway application. To be called by LoginViewController's login callback.
+ */
 - (void) loginUser:(NSString*) username {
         KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"IntuitWearLogin" accessGroup:nil];
         [keychainItem setObject:username forKey:(__bridge id)(kSecAttrAccount)];
+    
     self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
+    
     [[PushNotificationSDK sharedPushManager] registerUser:username
-                                                     inGroups:[NSArray arrayWithObjects:@"iosusergroup",@"hello",nil]
+                                                     inGroups:[NSArray arrayWithObjects:@"iosusergroup",@"group1",nil]
                                               withDeviceToken:globaldeviceToken error:nil];
-    
-    
 }
 
+/*
+ Method that logs out user by deleting username from keychain and changing the view to the login view. To be called by DashboardViewController's logout callback.
+ */
 - (void) logout {
     KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"IntuitWearLogin" accessGroup:nil];
     [keychainItem resetKeychainItem];
@@ -76,6 +84,9 @@ UIViewController* root;
     self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
 }
 
+/*
+ Callback for Intuit's Push Notification Gateway application to register username.
+ */
 -(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
     globaldeviceToken = deviceToken;
@@ -88,6 +99,9 @@ UIViewController* root;
     }
 }
 
+/*
+ Callback to display notification when received.
+ */
 -    (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo{
     NSDictionary*pushObject=[userInfo valueForKey:@"aps"];
     UIAlertView*alert=[[UIAlertView alloc] initWithTitle:@"Notification"

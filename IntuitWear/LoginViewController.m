@@ -20,22 +20,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupUI];
+}
+
+/* 
+ Format and setup UI elements.
+ */
+-(void)setupUI {
+    //format usernameField text box
     NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"Username" attributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
     _usernameField.attributedPlaceholder = str;
     _usernameField.layer.cornerRadius = 2.0f;
     _usernameField.layer.masksToBounds = YES;
     _usernameField.layer.borderColor = [[UIColor whiteColor]CGColor];
     _usernameField.layer.borderWidth = 0.5f;
+    
+    //setup tap gesture to dismiss keyboard on outside tap
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
-    
     [self.view addGestureRecognizer:tap];
 }
 
+/* 
+ Dismiss keyboard callback
+ */
 -(void)dismissKeyboard {
     [_usernameField resignFirstResponder];
 }
+
+
+/* 
+ START: keyboard pushing view up animation methods
+ -------
+ */
 
 #define kOFFSET_FOR_KEYBOARD 180.0
 
@@ -74,7 +93,7 @@
     }
 }
 
-//method to move the view up/down whenever the keyboard is shown/dismissed
+/* Method to move the view up/down whenever the keyboard is shown/dismissed */
 -(void)setViewMovedUp:(BOOL)movedUp
 {
     [UIView beginAnimations:nil context:NULL];
@@ -128,6 +147,11 @@
                                                   object:nil];
 }
 
+/* 
+  -------
+ END: keyboard pushing view up animation methods
+ */
+
 /*
 #pragma mark - Navigation
 
@@ -138,7 +162,9 @@
 }
 */
 
+/* Login button click callback */
 - (IBAction)loginClick:(id)sender {
+    // call loginUser method in AppDelegate
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] loginUser:_usernameField.text];
 }
 @end
