@@ -38,7 +38,7 @@ UIViewController* root;
     }
     
     // register this application with Intuit's Push Notification Gateway application with associated sender id
-    [[PushNotificationSDK sharedPushManager] setSenderId:@"1f6f955a-153b-4a11-9afa-4068f7eca0f0"];
+    [[PushNotificationSDK sharedPushManager] setSenderId:@"your_senderId"];
     [[PushNotificationSDK sharedPushManager] setDryRun:YES];
     
 
