@@ -27,11 +27,29 @@ UIViewController* root;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     root = self.window.rootViewController;
     
+    
+    NSString *const overrideUrl = @"https://png.d2d.msg.intuit.com";
+    [[PushNotificationSDK sharedPushManager] overrideServiceEndpoint:overrideUrl];
+    
+    UIMutableUserNotificationAction *viewAction = [[UIMutableUserNotificationAction alloc] init];
+    viewAction.identifier = @"viewOverdueInvoices";
+    viewAction.title = @"View";
+    viewAction.activationMode = UIUserNotificationActivationModeForeground;
+    viewAction.destructive = NO;
+    
+    // Define Categories (In case of categorized remote push notifications)
+    UIMutableUserNotificationCategory *messageCategory = [[UIMutableUserNotificationCategory alloc] init];
+    messageCategory.identifier = @"OverdueInvoices";
+    [messageCategory setActions:@[viewAction] forContext:UIUserNotificationActionContextDefault];
+    [messageCategory setActions:@[viewAction] forContext:UIUserNotificationActionContextMinimal];
+    NSSet *categories= [NSSet setWithObject:messageCategory];
+    
+    
     // request for push notification permission first time
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
     {
-        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:categories]];
+        [application registerForRemoteNotifications];
     }
     else
     {
@@ -40,10 +58,10 @@ UIViewController* root;
     }
     
     // register this application with Intuit's Push Notification Gateway application with associated sender id
-    [[PushNotificationSDK sharedPushManager] setSenderId:@"your_senderId"];
+    [[PushNotificationSDK sharedPushManager] setSenderId:@"20e1853f-46e8-4a48-b8ed-6bc975c5a266"];
     [[PushNotificationSDK sharedPushManager] setDryRun:YES];
     
-
+    
     [self loginChecks];
     
     return YES;
@@ -66,14 +84,14 @@ UIViewController* root;
  Method that logs in user by saving username to keychain and changing the view to the dashboard view. Also, registers username with Intuit's Push Notification Gateway application. To be called by LoginViewController's login callback.
  */
 - (void) loginUser:(NSString*) username {
-        KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"IntuitWearLogin" accessGroup:nil];
-        [keychainItem setObject:username forKey:(__bridge id)(kSecAttrAccount)];
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"IntuitWearLogin" accessGroup:nil];
+    [keychainItem setObject:username forKey:(__bridge id)(kSecAttrAccount)];
     
     self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
     
     [[PushNotificationSDK sharedPushManager] registerUser:username
-                                                     inGroups:[NSArray arrayWithObjects:@"iosusergroup",@"group1",nil]
-                                              withDeviceToken:globaldeviceToken error:nil];
+                                                 inGroups:[NSArray arrayWithObjects:@"iosusergroup",@"group1",nil]
+                                          withDeviceToken:globaldeviceToken error:nil];
 }
 
 /*
@@ -96,10 +114,21 @@ UIViewController* root;
     NSString *username = [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)];
     if([username length] > 0) {
         [[PushNotificationSDK sharedPushManager] registerUser:username
-                                                inGroups:[NSArray arrayWithObjects:@"iosusergroup",@"hello",nil]
-                                         withDeviceToken:deviceToken error:nil];
+                                                     inGroups:[NSArray arrayWithObjects:@"iosusergroup",@"group1",nil]
+                                              withDeviceToken:deviceToken error:nil];
     }
 }
+
+/*
+ Callback if registration to Intuit's Push Notification Gateway application failed.
+ */
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Did Fail to Register for Remote Notifications");
+    NSLog(@"%@, %@", error, error.localizedDescription);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Device Token" message:@"Fail to Register for Remote Notification" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 
 /*
  Callback to display notification when received.
@@ -107,11 +136,22 @@ UIViewController* root;
 -    (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo{
     NSDictionary*pushObject=[userInfo valueForKey:@"aps"];
     UIAlertView*alert=[[UIAlertView alloc] initWithTitle:@"Notification"
-                                                message:[pushObject objectForKey:@"alert"]
-                                               delegate:nil
-                                      cancelButtonTitle:@"OK"
-                                      otherButtonTitles:nil];
+                                                 message:[pushObject objectForKey:@"alert"]
+                                                delegate:nil
+                                       cancelButtonTitle:@"OK"
+                                       otherButtonTitles:nil];
     [alert show];
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
+    
+    if ([identifier isEqualToString:@"viewOverdueInvoices"])
+    {
+        // Perform Accept Action
+        NSLog(@"handleActionWithIdentifier called for: viewOverdueInvoices");
+    }
+    
+    completionHandler();
 }
 
 
