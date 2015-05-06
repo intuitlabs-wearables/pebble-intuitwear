@@ -34,7 +34,7 @@ UIViewController* root;
     UIMutableUserNotificationAction *viewAction = [[UIMutableUserNotificationAction alloc] init];
     viewAction.identifier = @"viewOverdueInvoices";
     viewAction.title = @"View";
-    viewAction.activationMode = UIUserNotificationActivationModeBackground;
+    viewAction.activationMode = UIUserNotificationActivationModeForeground;
     viewAction.destructive = NO;
     
     // Define Categories (In case of categorized remote push notifications)
